@@ -3,20 +3,6 @@ from scipy import stats
 
 df = pd.read_csv('AVONETplusClim.csv' )
 
-# AVERAGE TEMP vs BEAK LENGTH
-
-correlation_r, p_value = stats.pearsonr(df['bio_1'], df['Beak.Length_Culmen'])
-
-print(f"Pearson r: {correlation_r:.4f}")
-print(f"P-value: {p_value:.4e}")
-
-# MAXIMUM TEMP vs BEAK LENGTH
-
-correlation_r, p_value = stats.pearsonr(df['bio_5'], df['Beak.Length_Culmen'])
-
-print(f"Pearson r: {correlation_r:.4f}")
-print(f"P-value: {p_value:.4e}")
-
 # AVERAGE TEMP vs TARSUS LENGTH
 
 correlation_r, p_value = stats.pearsonr(df['bio_1'], df['Tarsus.Length'])

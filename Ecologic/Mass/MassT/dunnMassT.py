@@ -4,11 +4,11 @@ import numpy as np
 
 df = pd.read_csv('AVONETplusClim.csv')
 
-df = df[['Trophic.Level', 'Beak.Depth']].copy()
-df = df[df['Trophic.Level'].isin(['Carnivore', 'Herbivore', 'Omnivore', 'Scavenger'])]
+df = df[['Trophic.Level', 'Mass']].copy()
+df = df[df['Trophic.Level'].isin(['Carnivore', 'Herbivore', 'Omnivore'])]
 
 dunn_results = sp.posthoc_dunn(a=df, 
-                                val_col='Beak.Depth', 
+                                val_col='Mass', 
                                 group_col='Trophic.Level', 
                                 p_adjust='bonferroni')
 

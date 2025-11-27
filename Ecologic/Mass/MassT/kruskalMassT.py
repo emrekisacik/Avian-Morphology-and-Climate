@@ -3,12 +3,12 @@ from scipy import stats
 
 df = pd.read_csv('AVONETplusClim.csv')
 
-df_test = df[['Trophic.Level', 'Beak.Depth']].copy()
+df_test = df[['Trophic.Level', 'Mass']].copy()
 
-df_test = df_test[df_test['Trophic.Level'].isin(['Carnivore', 'Herbivore', 'Omnivore', 'Scavenger'])]
+df_test = df_test[df_test['Trophic.Level'].isin(['Carnivore', 'Herbivore', 'Omnivore'])]
 
 groups = sorted(df_test['Trophic.Level'].unique())
-data_groups = [df_test[df_test['Trophic.Level'] == g]['Beak.Depth'] for g in groups]
+data_groups = [df_test[df_test['Trophic.Level'] == g]['Mass'] for g in groups]
 
 h_stat, p_val = stats.kruskal(*data_groups)
 
