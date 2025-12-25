@@ -64,23 +64,25 @@ The morphological data are highly right-skewed for all six traits. For mass, tai
 
 For minimum, maximum, and mean temperature, the data are highly left-skewed. However, normalization is intentionally not applied to these variables. This is because temperature does not follow multiplicative scaling; for example, 20 °C is not twice as hot as 10 °C. Therefore, applying logarithmic or exponential transformations could distort the physical and biological relevance. Consequently, the assumption of normal distribution is rejected for these variables. For precipitation, square root transformation is applied to approach a normal distribution. 
 
-#### **2.3.2. Traits and Climatic Variables**
+#### **2.3.2. Climatic Variables**
 
 All the morphological traits are tested against minimum, maximum, and mean temperature to assess correlations, using Spearman's rank correlation coefficient. Mass is additionally tested against precipitation, using the Pearson correlation coefficient, given the normal distributions.
 
-#### **2.3.3. Traits and Ecological Variables**
+#### **2.3.3. Ecological Variables**
 
-All the morphological traits are firstly grouped based on habitat groups (open, closed, aquatic), migratory behaviors (sedentary, partial, migratory), and trophic levels (herbivore, omnivore, carnivore). The traits, except for tail length, are first tested using the Kruskal–Wallis test to assess the differences in distributions across groups, followed by Dunn’s test to determine the groups that differ. For tail length, one-way ANOVA and Tukey’s HSD test are used for the same purpose, given the normal distributions. 
+All morphological traits are first grouped based on habitat types (Open, Closed, Aquatic), migratory behaviors (Sedentary, Partial, Migratory), and trophic levels (Herbivore, Omnivore, Carnivore). All the selected traits, except for tail length, are first tested using the Kruskal–Wallis test to assess the differences in distributions, followed by Dunn’s test to determine the groups that differ. For tail length, one-way ANOVA and Tukey’s HSD test are used for the same purpose, given the normal distributions. 
 
 ### **2.4. Machine Learning**
 
 #### **2.4.1. Random Forest Regression**
 
+A random forest regression model is built for each morphological trait, combining the climatic and ecological variables. To improve the predictive power, both variable sets are expanded. In addition to the previously used temperature and precipitation, temperature seasonality is included as a climatic variable. The trophic level is replaced by the trophic niche, with 10 distinct dietary specializations. Instead of grouping the habitats into broad categories, 11 specific habitat types are used to preserve the variance. The primary lifestyle is added as a new feature, with five categories of locomotory niches: Aerial (flying), Insessorial (perching), Terrestrial (walking), Aquatic (swimming), and Generalist (not specialized).
 
+The ecological variables are converted into numerical variables via one-hot encoding. The data is split into training (80%) and testing (20%) sets to build the model. To prevent overfitting, several thresholds are applied to the model; the number of trees is limited to 100, with a maximum of 10 branches and a minimum of 5 samples in each leaf. Feature importance is used to quantify the predictive power of each variable on a certain morphological trait. Based on the proportion of variance explained by each variable, it is concluded which factors are more controlling in avian morphology. 
 
 #### **2.4.2. Principal Component Analysis (PCA)**
 
-
+PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. The result demonstrated that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the Hand-Wing Index (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
 
 ## **3. RESULTS**
 
