@@ -34,41 +34,12 @@
             letter-spacing: -0.5px;
         }
         
-        .guide-container {
-            background: #fff;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            text-align: left;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .guide-container h2 { 
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 1.1rem; 
-            margin-top: 0; 
-            color: var(--primary); 
-            font-weight: 800;
-        }
-
-        .guide-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .guide-item b { color: var(--text); display: block; margin-bottom: 4px; }
-        .guide-item p { margin: 0; font-size: 0.95rem; line-height: 1.4; color: var(--secondary-text); }
-
         .main-category-title {
             font-family: 'Inter', -apple-system, sans-serif;
             font-size: 2.2rem;
             font-weight: 800;
             color: var(--text);
             margin: 60px 0 35px 0;
-            letter-spacing: -0.5px;
         }
 
         .sub-trait-title {
@@ -125,6 +96,7 @@
 
         h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
 
+        /* MODAL VE PENCERE AYARLARI */
         #modalOverlay {
             display: none;
             position: fixed;
@@ -142,18 +114,18 @@
             background: white;
             position: relative;
             border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            width: fit-content;
-            height: fit-content;
-            overflow: hidden;
-            line-height: 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            width: auto;
+            height: auto;
+            overflow: hidden; /* Taşmayı engeller */
+            line-height: 0; 
         }
 
         #closeBtn {
             position: absolute;
             top: 10px;
             right: 15px;
-            background: rgba(231, 76, 60, 0.9);
+            background: #e74c3c;
             color: white;
             width: 30px;
             height: 30px;
@@ -161,15 +133,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
             z-index: 2100;
+            border: 2px solid white;
         }
 
         iframe {
             border: none;
             display: block;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Scrollbar'ı tamamen gizler */
         }
 
         footer { margin-top: 100px; padding: 40px; border-top: 1px solid var(--border-color); color: #95a5a6; font-size: 0.85rem; }
@@ -185,37 +161,35 @@
     <div id="modalOverlay">
         <div id="modalBox">
             <div id="closeBtn">&times;</div>
-            <iframe id="plotFrame" src=""></iframe>
+            <iframe id="plotFrame" src="" scrolling="no"></iframe>
         </div>
     </div>
 
     <div class="main-category-title">Morphospace</div>
     <div class="grid">
-        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Habitat.html', 1000, 700)" class="card pca-card"><h3>By Habitat</h3></div>
-        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Migration.html', 1000, 700)" class="card pca-card"><h3>By Migration</h3></div>
-        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html', 1000, 700)" class="card pca-card"><h3>By Lifestyle</h3></div>
-        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Trophic_Niche.html', 1000, 700)" class="card pca-card"><h3>By Diet</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Habitat.html')" class="card pca-card"><h3>By Habitat</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Migration.html')" class="card pca-card"><h3>By Migration</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html')" class="card pca-card"><h3>By Lifestyle</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Trophic_Niche.html')" class="card pca-card"><h3>By Diet</h3></div>
     </div>
 
     <div class="main-category-title">Individual Traits</div>
-
     <div class="sub-trait-title">Body Mass</div>
     <div class="grid">
-        <div onclick="openModal('HTML_Figures/Mass_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openModal('HTML_Figures/Mass_Migration.html', 1000, 500)" class="card"><h3>By Migration</h3></div>
-        <div onclick="openModal('HTML_Figures/Mass_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openModal('HTML_Figures/Mass_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Mass_Habitat.html')" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Mass_Migration.html')" class="card"><h3>By Migration</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Mass_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Mass_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
     </div>
 
     <div class="sub-trait-title">Leg Size</div>
     <div class="grid">
-        <div onclick="openModal('HTML_Figures/Tarsus_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openModal('HTML_Figures/Tarsus_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openModal('HTML_Figures/Tarsus_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Tarsus_Habitat.html')" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openAutoModal('HTML_Figures/Tarsus_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
     </div>
 
     <footer>
-        &copy; 2025 Y. Emre Kısacık | Sabancı University | Molecular Biology, Genetics, and Bioengineering
+        &copy; 2025 | Y. Emre Kısacık | Sabancı University | Molecular Biology, Genetics, and Bioengineering
     </footer>
 
     <script>
@@ -223,13 +197,32 @@
         const frame = document.getElementById('plotFrame');
         const closeBtn = document.getElementById('closeBtn');
 
-        function openModal(url, width, height) {
+        function openAutoModal(url) {
+            frame.style.width = '100px';
+            frame.style.height = '100px';
             frame.src = url;
-            frame.style.width = width + 'px';
-            frame.style.height = height + 'px';
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
+
+        frame.onload = function() {
+            try {
+                const doc = frame.contentDocument || frame.contentWindow.document;
+                
+                doc.body.style.margin = '0';
+                doc.body.style.padding = '0';
+                doc.body.style.overflow = 'hidden';
+                const contentWidth = doc.body.scrollWidth;
+                const contentHeight = doc.body.scrollHeight;
+                frame.style.width = contentWidth + 'px';
+                frame.style.height = contentHeight + 'px';
+
+            } catch (e) {
+                console.error("Ölçüm başarısız. Klasör yapısının doğruluğundan emin olun.");
+                frame.style.width = '1000px';
+                frame.style.height = '700px';
+            }
+        };
 
         closeBtn.onclick = function() {
             overlay.style.display = 'none';
