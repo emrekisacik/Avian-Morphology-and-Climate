@@ -18,7 +18,7 @@ Furthermore, since selection pressures are not limited to climate, the project a
 
 AVONET is a publicly available database released with the publication titled “AVONET: morphological, ecological and geographical data for all birds” by Tobias et al. (2022). The database is a compilation of functional trait data for all birds, including morphological measurements, ecological variables, and geographic location. It includes measurements from 90020 individuals of 11009 bird species around the world and summarizes the data as species averages in different taxonomic formats. For this project, the BirdLife format is used, given in CSV format. 
 
-The morphological traits measured are beak dimensions, wing dimensions, tail length, tarsus length, and body mass. The ecological variables recorded include habitat, migration, trophic level, and primary lifestyle. Information on geographic location is given as the minimum and maximum latitude, midpoint latitude and longitude, as well as range size.
+The morphological traits measured are beak dimensions, wing dimensions, tarsus length, and body mass. The ecological variables recorded include habitat, migration, trophic level, and primary lifestyle. Information on geographic location is given as the minimum and maximum latitude, midpoint latitude and longitude, as well as range size.
 
 #### **2.1.2 WorldClim**
 
@@ -32,7 +32,6 @@ First, the AVONET dataset is filtered to eliminate the unused variables. The fol
     - Mass
     - Beak Length
     - Tarsus Length
-    - Tail Length
     - Wing Length
     - Hand-Wing Index
 - Ecological Variables: 
@@ -60,7 +59,7 @@ Next, the rasterio library is used to extract the selected bioclimatic variables
 
 The distribution of each variable is evaluated for normality based on skewness and kurtosis, since the Shapiro-Wilk test is overly sensitive with large sample sizes. While skewness is used as a measure of the symmetry of the distribution, kurtosis is used to measure the sharpness of the peak. For this project, the criteria for normal distribution are defined as both skewness and kurtosis values falling between -1 and 1. 
 
-The morphological data are highly right-skewed for all six traits. For mass, tail length, wing length, and hand-wing index, log-transformation is applied to approach a normal distribution. However, for tarsus length and beak length, the assumption of normal distribution is rejected due to high kurtosis even after log-transformation. The morphological data are also evaluated for normality when grouped based on the ecological variables, for example, the distribution of mass within each habitat group. As a result, among all traits, only tail length consistently shows a normal distribution across ecological groups after log-transformation.
+The morphological data are highly right-skewed for all five traits. For mass, wing length, and hand-wing index, log-transformation is applied to approach a normal distribution. However, for tarsus length and beak length, the assumption of normal distribution is rejected due to high kurtosis even after log-transformation. The morphological data are also evaluated for normality when grouped based on the ecological variables, for example, the distribution of mass within each habitat group. However, none of the traits are normally distributed across ecological groups.
 
 For minimum, maximum, and mean temperature, the data are highly left-skewed. However, normalization is intentionally not applied to these variables. This is because temperature does not follow multiplicative scaling; for example, 20 °C is not twice as hot as 10 °C. Therefore, applying logarithmic or exponential transformations could distort the physical and biological relevance. Consequently, the assumption of normal distribution is rejected for these variables. For precipitation, square root transformation is applied to approach a normal distribution. 
 
@@ -70,7 +69,7 @@ All the morphological traits are tested against minimum, maximum, and mean tempe
 
 #### **2.3.3. Ecological Variables**
 
-All morphological traits are first grouped based on habitat types (Open, Closed, Aquatic), migratory behaviors (Sedentary, Partial, Migratory), and trophic levels (Herbivore, Omnivore, Carnivore). All the selected traits, except for tail length, are first tested using the Kruskal–Wallis test to assess the differences in distributions, followed by Dunn’s test to determine the groups that differ. For tail length, one-way ANOVA and Tukey’s HSD test are used for the same purpose, given the normal distributions. 
+All morphological traits are first grouped based on habitat types (Open, Closed, Aquatic), migratory behaviors (Sedentary, Partial, Migratory), and trophic levels (Herbivore, Omnivore, Carnivore). All the selected traits are first tested using the Kruskal–Wallis test to assess the differences in distributions, followed by Dunn’s test to determine the groups that differ.
 
 ### **2.4. Machine Learning**
 
@@ -82,7 +81,7 @@ The ecological variables are converted into numerical variables via one-hot enco
 
 #### **2.4.2. Principal Component Analysis (PCA)**
 
-PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. The result demonstrated that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the Hand-Wing Index (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
+PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait, including tail length, to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. The result demonstrated that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the Hand-Wing Index (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
 
 ## **3. RESULTS**
 
