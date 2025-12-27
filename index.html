@@ -79,7 +79,6 @@
             color: var(--text);
             margin: 60px 0 35px 0;
             letter-spacing: -0.5px;
-            text-align: center;
         }
 
         .sub-trait-title {
@@ -90,7 +89,6 @@
             font-weight: 600;
             color: var(--secondary-text);
             margin: 40px 0 20px 0;
-            text-align: center;
         }
 
         .sub-trait-title::before,
@@ -100,16 +98,6 @@
             height: 1px;
             background-color: var(--border-color);
             margin: 0 15px;
-        }
-
-        .trait-desc {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 25px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
         }
 
         .grid {
@@ -149,83 +137,45 @@
             border: none;
             width: 240px;
         }
-        .pca-card:hover { background: #34495e; color: white; }
 
-        h3 { 
-            font-family: inherit;
-            margin: 0; 
-            font-size: 1.05rem; 
-            font-weight: 500; 
-        }
+        h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
 
-        .hwi-illustration-container {
-            max-width: 800px;
-            margin: 50px auto 20px auto;
-        }
-
-        .hwi-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .hwi-labels {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px 0;
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            font-weight: 600;
-        }
-
-        #modalOverlay {
+        #plotOverlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #modalContent {
-            position: relative;
-            width: 90%;
-            height: 85%;
+            width: 100vw;
+            height: 100vh;
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
         }
 
-        #closeModal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            font-weight: bold;
+        #closePlot {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            font-weight: 800;
             color: #333;
             cursor: pointer;
-            z-index: 1010;
-            background: white;
-            width: 40px;
-            height: 40px;
+            z-index: 2100;
+            background: rgba(255, 255, 255, 0.9);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         footer { margin-top: 100px; padding: 40px; border-top: 1px solid var(--border-color); color: #95a5a6; font-size: 0.85rem; }
@@ -251,96 +201,80 @@
             </div>
         </div>
         <div class="legend-tip">
-            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off for closer inspection.
+            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off.
         </div>
     </div>
 
-    <div id="modalOverlay">
-        <div id="modalContent">
-            <div id="closeModal">&times;</div>
-            <iframe id="plotFrame" src=""></iframe>
-        </div>
+    <div id="plotOverlay">
+        <div id="closePlot">&times;</div>
+        <iframe id="plotFrame" src=""></iframe>
     </div>
 
     <div class="main-category-title">Morphospace</div>
     <div class="grid">
-        <div onclick="openPlot('HTML_Figures/PCA_Morphospace_Habitat.html')" class="card pca-card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/PCA_Morphospace_Migration.html')" class="card pca-card"><h3>By Migration</h3></div>
-        <div onclick="openPlot('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html')" class="card pca-card"><h3>By Lifestyle</h3></div>
-        <div onclick="openPlot('HTML_Figures/PCA_Morphospace_Trophic_Niche.html')" class="card pca-card"><h3>By Diet</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Habitat.html')" class="card pca-card"><h3>By Habitat</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Migration.html')" class="card pca-card"><h3>By Migration</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html')" class="card pca-card"><h3>By Lifestyle</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Trophic_Niche.html')" class="card pca-card"><h3>By Diet</h3></div>
     </div>
 
     <div class="main-category-title">Individual Traits</div>
 
     <div class="sub-trait-title">Body Mass</div>
     <div class="grid">
-        <div onclick="openPlot('HTML_Figures/Mass_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/Mass_Migration.html')" class="card"><h3>By Migration</h3></div>
-        <div onclick="openPlot('HTML_Figures/Mass_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openPlot('HTML_Figures/Mass_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Mass_Habitat.html')" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Mass_Migration.html')" class="card"><h3>By Migration</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Mass_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Mass_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
     </div>
 
     <div class="sub-trait-title">Leg Size</div>
     <div class="grid">
-        <div onclick="openPlot('HTML_Figures/Tarsus_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/Tarsus_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openPlot('HTML_Figures/Tarsus_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Tarsus_Habitat.html')" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Tarsus_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Tarsus_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
     </div>
 
     <div class="sub-trait-title">Beak Size</div>
     <div class="grid">
-        <div onclick="openPlot('HTML_Figures/Beak_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/Beak_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
-    </div>
-
-    <div class="sub-trait-title">Wing Length</div>
-    <div class="grid">
-        <div onclick="openPlot('HTML_Figures/Wing_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/Wing_Migration.html')" class="card"><h3>By Migration</h3></div>
-        <div onclick="openPlot('HTML_Figures/Wing_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openPlot('HTML_Figures/Wing_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
-    </div>
-
-    <div class="sub-trait-title">Wing Shape (Hand-Wing Index)</div>
-    <p class="trait-desc">The Hand-Wing Index (HWI) is a measure of wing pointedness.</p>
-    <div class="grid">
-        <div onclick="openPlot('HTML_Figures/HWI_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openPlot('HTML_Figures/HWI_Migration.html')" class="card"><h3>By Migration</h3></div>
-        <div onclick="openPlot('HTML_Figures/HWI_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openPlot('HTML_Figures/HWI_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
-    </div>
-
-    <div class="hwi-illustration-container">
-        <img src="HWI_Definition.jpg" alt="Hand-Wing Index Illustration: Round vs Pointed Wings" class="hwi-img">
-        <div class="hwi-labels">
-            <span>Round Wings (Low HWI)</span>
-            <span>Pointed Wings (High HWI)</span>
-        </div>
+        <div onclick="openFullscreen('HTML_Figures/Beak_Habitat.html')" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openFullscreen('HTML_Figures/Beak_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
     </div>
 
     <script>
-        const modal = document.getElementById('modalOverlay');
+        const overlay = document.getElementById('plotOverlay');
         const frame = document.getElementById('plotFrame');
-        const closeBtn = document.getElementById('closeModal');
+        const closeBtn = document.getElementById('closePlot');
 
-        function openPlot(url) {
+        function openFullscreen(url) {
             frame.src = url;
-            modal.style.display = 'flex';
+            overlay.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
+        frame.onload = function() {
+            try {
+                const doc = frame.contentDocument || frame.contentWindow.document;
+                const style = doc.createElement('style');
+                style.innerHTML = `
+                    body, html { 
+                        margin: 0; padding: 0; height: 100%; width: 100%;
+                        display: flex; justify-content: center; align-items: center;
+                        background-color: white;
+                    }
+                    .plotly-graph-div { margin: auto !important; }
+                `;
+                doc.head.appendChild(style);
+            } catch (e) {
+                console.warn("Cross-origin restriction may prevent auto-centering if files are not on the same server.");
+            }
+        };
+
         closeBtn.onclick = function() {
-            modal.style.display = 'none';
+            overlay.style.display = 'none';
             frame.src = "";
             document.body.style.overflow = 'auto';
         }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeBtn.onclick();
-            }
-        }
     </script>
-
 </body>
 </html>
