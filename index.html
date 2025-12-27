@@ -180,7 +180,6 @@
             font-weight: 600;
         }
 
-        /* MODAL STYLES */
         #modalOverlay {
             display: none;
             position: fixed;
@@ -327,7 +326,7 @@
         function openPlot(url) {
             frame.src = url;
             modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         closeBtn.onclick = function() {
