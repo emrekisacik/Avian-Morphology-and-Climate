@@ -51,7 +51,6 @@
             margin-top: 0; 
             color: var(--primary); 
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         .guide-grid {
@@ -62,15 +61,6 @@
 
         .guide-item b { color: var(--text); display: block; margin-bottom: 4px; }
         .guide-item p { margin: 0; font-size: 0.95rem; line-height: 1.4; color: var(--secondary-text); }
-
-        .legend-tip {
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            font-style: italic;
-            color: var(--secondary-text);
-        }
 
         .main-category-title {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -131,49 +121,53 @@
             background-color: #ebf5fb;
         }
 
-        .pca-card {
-            background: #2c3e50;
-            color: white;
-            border: none;
-            width: 240px;
-        }
+        .pca-card { background: #2c3e50; color: white; }
 
         h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
 
-        #plotOverlay {
+        #modalOverlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: white;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
             z-index: 2000;
+            justify-content: center;
+            align-items: center;
         }
 
-        #closePlot {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            font-size: 35px;
-            font-weight: 800;
-            color: #333;
-            cursor: pointer;
-            z-index: 2100;
-            background: rgba(255, 255, 255, 0.9);
-            width: 50px;
-            height: 50px;
+        #modalBox {
+            background: white;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            width: fit-content;
+            height: fit-content;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            border: 1px solid var(--border-color);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2100;
         }
 
         iframe {
-            width: 100%;
-            height: 100%;
             border: none;
             display: block;
         }
@@ -188,94 +182,64 @@
         <p>Interactive Plots of Avian Morphology and Ecological Factors</p>
     </header>
 
-    <div class="guide-container">
-        <h2>Morphospace Guide</h2>
-        <div class="guide-grid">
-            <div class="guide-item">
-                <b>PC1: Body Size</b>
-                <p>Represents overall body dimensions. As PC1 increases, body size increases.</p>
-            </div>
-            <div class="guide-item">
-                <b>PC2: Wing Shape</b>
-                <p>Represents wing shape. Higher PC2 values indicate more pointed wings.</p>
-            </div>
+    <div id="modalOverlay">
+        <div id="modalBox">
+            <div id="closeBtn">&times;</div>
+            <iframe id="plotFrame" src=""></iframe>
         </div>
-        <div class="legend-tip">
-            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off.
-        </div>
-    </div>
-
-    <div id="plotOverlay">
-        <div id="closePlot">&times;</div>
-        <iframe id="plotFrame" src=""></iframe>
     </div>
 
     <div class="main-category-title">Morphospace</div>
     <div class="grid">
-        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Habitat.html')" class="card pca-card"><h3>By Habitat</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Migration.html')" class="card pca-card"><h3>By Migration</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html')" class="card pca-card"><h3>By Lifestyle</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/PCA_Morphospace_Trophic_Niche.html')" class="card pca-card"><h3>By Diet</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Habitat.html', 1000, 700)" class="card pca-card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Migration.html', 1000, 700)" class="card pca-card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html', 1000, 700)" class="card pca-card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Trophic_Niche.html', 1000, 700)" class="card pca-card"><h3>By Diet</h3></div>
     </div>
 
     <div class="main-category-title">Individual Traits</div>
 
     <div class="sub-trait-title">Body Mass</div>
     <div class="grid">
-        <div onclick="openFullscreen('HTML_Figures/Mass_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Mass_Migration.html')" class="card"><h3>By Migration</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Mass_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Mass_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Migration.html', 1000, 500)" class="card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
     </div>
 
     <div class="sub-trait-title">Leg Size</div>
     <div class="grid">
-        <div onclick="openFullscreen('HTML_Figures/Tarsus_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Tarsus_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Tarsus_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
     </div>
 
-    <div class="sub-trait-title">Beak Size</div>
-    <div class="grid">
-        <div onclick="openFullscreen('HTML_Figures/Beak_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openFullscreen('HTML_Figures/Beak_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
-    </div>
+    <footer>
+        &copy; 2025 Y. Emre Kısacık | Sabancı University | Molecular Biology, Genetics, and Bioengineering
+    </footer>
 
     <script>
-        const overlay = document.getElementById('plotOverlay');
+        const overlay = document.getElementById('modalOverlay');
         const frame = document.getElementById('plotFrame');
-        const closeBtn = document.getElementById('closePlot');
+        const closeBtn = document.getElementById('closeBtn');
 
-        function openFullscreen(url) {
+        function openModal(url, width, height) {
             frame.src = url;
-            overlay.style.display = 'block';
+            frame.style.width = width + 'px';
+            frame.style.height = height + 'px';
+            overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
-        frame.onload = function() {
-            try {
-                const doc = frame.contentDocument || frame.contentWindow.document;
-                const style = doc.createElement('style');
-                style.innerHTML = `
-                    body, html { 
-                        margin: 0; padding: 0; height: 100%; width: 100%;
-                        display: flex; justify-content: center; align-items: center;
-                        background-color: white;
-                    }
-                    .plotly-graph-div { margin: auto !important; }
-                `;
-                doc.head.appendChild(style);
-            } catch (e) {
-                console.warn("Cross-origin restriction may prevent auto-centering if files are not on the same server.");
-            }
-        };
 
         closeBtn.onclick = function() {
             overlay.style.display = 'none';
             frame.src = "";
             document.body.style.overflow = 'auto';
         }
+
+        overlay.onclick = function(e) {
+            if (e.target === overlay) closeBtn.onclick();
+        }
     </script>
 </body>
 </html>
-
