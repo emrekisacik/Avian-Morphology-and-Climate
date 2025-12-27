@@ -24,167 +24,52 @@
         }
 
         header { max-width: 800px; margin: 0 auto 40px auto; }
-        
-        h1 { 
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: var(--text); 
-            font-weight: 800; 
-            font-size: 2.5rem; 
-            margin-bottom: 5px; 
-            letter-spacing: -0.5px;
-        }
-        
+        h1 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 2.5rem; margin-bottom: 5px; letter-spacing: -0.5px; }
+
         .guide-container {
-            background: #fff;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            text-align: left;
+            background: #fff; border: 2px solid var(--primary); border-radius: 12px;
+            padding: 20px; max-width: 800px; margin: 0 auto 50px auto; text-align: left;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        
-        .guide-container h2 { 
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 1.1rem; 
-            margin-top: 0; 
-            color: var(--primary); 
-            font-weight: 800;
-        }
-
-        .guide-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
+        .guide-container h2 { font-size: 1.1rem; margin-top: 0; color: var(--primary); font-weight: 800; }
+        .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .guide-item b { color: var(--text); display: block; margin-bottom: 4px; }
         .guide-item p { margin: 0; font-size: 0.95rem; line-height: 1.4; color: var(--secondary-text); }
+        .legend-tip { margin-top: 15px; padding-top: 10px; border-top: 1px solid var(--border-color); font-size: 0.9rem; font-style: italic; color: var(--secondary-text); }
 
-        .legend-tip {
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            font-style: italic;
-            color: var(--secondary-text);
-        }
+        .main-category-title { font-size: 2.2rem; font-weight: 800; margin: 60px 0 35px 0; letter-spacing: -0.5px; }
+        .sub-trait-title { display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 600; color: var(--secondary-text); margin: 40px 0 20px 0; }
+        .sub-trait-title::before, .sub-trait-title::after { content: ""; flex: 0 1 50px; height: 1px; background-color: var(--border-color); margin: 0 15px; }
+        .trait-desc { font-size: 1rem; color: var(--secondary-text); margin-bottom: 25px; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        .main-category-title {
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text);
-            margin: 60px 0 35px 0;
-            letter-spacing: -0.5px;
-        }
-
-        .sub-trait-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--secondary-text);
-            margin: 40px 0 20px 0;
-        }
-
-        .sub-trait-title::before,
-        .sub-trait-title::after {
-            content: "";
-            flex: 0 1 50px;
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 0 15px;
-        }
-
-        .trait-desc {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 25px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 1200px; margin: 0 auto; }
         .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 220px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
+            background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 220px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: 0.2s;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-            background-color: #ebf5fb;
-        }
-
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.15); background-color: #ebf5fb; }
         .pca-card { background: #2c3e50; color: white; }
-
         h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
 
         #modalOverlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); z-index: 2000; justify-content: center; align-items: center;
         }
-
         #modalBox {
-            background: white;
-            position: relative;
-            border-radius: 12px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            overflow: hidden;
-            line-height: 0; 
+            background: white; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            position: relative; overflow: hidden; display: flex;
         }
-
         #closeBtn {
-            position: absolute;
-            top: 10px; right: 10px;
-            background: #e74c3c;
-            color: white;
-            width: 32px; height: 32px;
-            border-radius: 50%;
+            position: absolute; top: 12px; right: 12px; background: #e74c3c; color: white;
+            width: 32px; height: 32px; border-radius: 50%; border: 2px solid white;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px; font-weight: bold;
-            cursor: pointer;
-            z-index: 2100;
-            border: 2px solid white;
+            font-size: 22px; cursor: pointer; z-index: 2100; line-height: 0; padding-bottom: 4px; box-sizing: border-box;
         }
-
-        iframe { border: none; display: block; width: 100%; height: 100%; margin: 0; padding: 0; }
+        iframe { border: none; display: block; margin: 0; padding: 0; }
 
         .hwi-illustration-container { max-width: 800px; margin: 50px auto 20px auto; }
         .hwi-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-color); }
-        .hwi-labels {
-            display: flex; justify-content: space-between;
-            padding: 10px 20px 0;
-            font-size: 0.9rem; color: var(--secondary-text); font-weight: 600;
-        }
+        .hwi-labels { display: flex; justify-content: space-between; padding: 10px 20px 0; font-size: 0.9rem; font-weight: 600; color: var(--secondary-text); }
 
         footer { margin-top: 100px; padding: 40px; border-top: 1px solid var(--border-color); color: #95a5a6; font-size: 0.85rem; }
     </style>
@@ -199,18 +84,10 @@
     <div class="guide-container">
         <h2>Morphospace Guide</h2>
         <div class="guide-grid">
-            <div class="guide-item">
-                <b>PC1: Body Size</b>
-                <p>Represents overall body dimensions. As PC1 increases, body size increases.</p>
-            </div>
-            <div class="guide-item">
-                <b>PC2: Wing Shape</b>
-                <p>Represents wing shape. Higher PC2 values indicate more pointed wings.</p>
-            </div>
+            <div class="guide-item"><b>PC1: Body Size</b><p>Represents overall body dimensions. As PC1 increases, body size increases.</p></div>
+            <div class="guide-item"><b>PC2: Wing Shape</b><p>Represents wing shape. Higher PC2 values indicate more pointed wings.</p></div>
         </div>
-        <div class="legend-tip">
-            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off.
-        </div>
+        <div class="legend-tip">💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off.</div>
     </div>
 
     <div id="modalOverlay">
@@ -229,7 +106,6 @@
     </div>
 
     <div class="main-category-title">Individual Traits</div>
-
     <div class="sub-trait-title">Body Mass</div>
     <div class="grid">
         <div onclick="openModal('HTML_Figures/Mass_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
@@ -270,15 +146,10 @@
 
     <div class="hwi-illustration-container">
         <img src="HWI_Definition.jpg" alt="HWI Illustration" class="hwi-img">
-        <div class="hwi-labels">
-            <span>Round Wings (Low HWI)</span>
-            <span>Pointed Wings (High HWI)</span>
-        </div>
+        <div class="hwi-labels"><span>Round Wings (Low HWI)</span><span>Pointed Wings (High HWI)</span></div>
     </div>
 
-    <footer>
-        &copy; 2025 | Yağız Emre Kısacık | Sabancı University | Molecular Biology & Genetics
-    </footer>
+    <footer>&copy; 2025 | Yağız Emre Kısacık | Sabancı University | Molecular Biology & Genetics</footer>
 
     <script>
         const overlay = document.getElementById('modalOverlay');
@@ -289,6 +160,8 @@
         function openModal(url, w, h) {
             box.style.width = w + 'px';
             box.style.height = h + 'px';
+            frame.style.width = w + 'px';
+            frame.style.height = h + 'px';
             frame.src = url;
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -299,8 +172,8 @@
                 const doc = frame.contentDocument || frame.contentWindow.document;
                 const style = doc.createElement('style');
                 style.innerHTML = `
-                    body, html { margin: 0 !important; padding: 0 !important; overflow: hidden !important; width: 100%; height: 100%; }
-                    .plotly-graph-div { margin: 0 !important; }
+                    body, html { margin: 0 !important; padding: 0 !important; overflow: hidden !important; width: 100% !important; height: 100% !important; }
+                    .plotly-graph-div { margin: 0 !important; width: 100% !important; height: 100% !important; }
                 `;
                 doc.head.appendChild(style);
                 frame.contentWindow.dispatchEvent(new Event('resize'));
