@@ -34,12 +34,50 @@
             letter-spacing: -0.5px;
         }
         
+        .guide-container {
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .guide-container h2 { 
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1.1rem; 
+            margin-top: 0; 
+            color: var(--primary); 
+            font-weight: 800;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .guide-item b { color: var(--text); display: block; margin-bottom: 4px; }
+        .guide-item p { margin: 0; font-size: 0.95rem; line-height: 1.4; color: var(--secondary-text); }
+
+        .legend-tip {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+
         .main-category-title {
             font-family: 'Inter', -apple-system, sans-serif;
             font-size: 2.2rem;
             font-weight: 800;
             color: var(--text);
             margin: 60px 0 35px 0;
+            letter-spacing: -0.5px;
         }
 
         .sub-trait-title {
@@ -61,11 +99,19 @@
             margin: 0 15px;
         }
 
+        .trait-desc {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
             gap: 15px;
             max-width: 1200px;
             margin: 0 auto;
@@ -96,15 +142,12 @@
 
         h3 { margin: 0; font-size: 1.05rem; font-weight: 500; }
 
-        /* MODAL VE PENCERE AYARLARI */
         #modalOverlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -114,38 +157,33 @@
             background: white;
             position: relative;
             border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            width: auto;
-            height: auto;
-            overflow: hidden; /* Taşmayı engeller */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
             line-height: 0; 
         }
 
         #closeBtn {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 10px; right: 10px;
             background: #e74c3c;
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 32px; height: 32px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: bold;
             cursor: pointer;
             z-index: 2100;
             border: 2px solid white;
         }
 
-        iframe {
-            border: none;
-            display: block;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* Scrollbar'ı tamamen gizler */
+        iframe { border: none; display: block; width: 100%; height: 100%; margin: 0; padding: 0; }
+
+        .hwi-illustration-container { max-width: 800px; margin: 50px auto 20px auto; }
+        .hwi-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-color); }
+        .hwi-labels {
+            display: flex; justify-content: space-between;
+            padding: 10px 20px 0;
+            font-size: 0.9rem; color: var(--secondary-text); font-weight: 600;
         }
 
         footer { margin-top: 100px; padding: 40px; border-top: 1px solid var(--border-color); color: #95a5a6; font-size: 0.85rem; }
@@ -158,48 +196,99 @@
         <p>Interactive Plots of Avian Morphology and Ecological Factors</p>
     </header>
 
+    <div class="guide-container">
+        <h2>Morphospace Guide</h2>
+        <div class="guide-grid">
+            <div class="guide-item">
+                <b>PC1: Body Size</b>
+                <p>Represents overall body dimensions. As PC1 increases, body size increases.</p>
+            </div>
+            <div class="guide-item">
+                <b>PC2: Wing Shape</b>
+                <p>Represents wing shape. Higher PC2 values indicate more pointed wings.</p>
+            </div>
+        </div>
+        <div class="legend-tip">
+            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off.
+        </div>
+    </div>
+
     <div id="modalOverlay">
         <div id="modalBox">
             <div id="closeBtn">&times;</div>
-            <iframe id="plotFrame" src="" scrolling="no"></iframe>
+            <iframe id="plotFrame" scrolling="no"></iframe>
         </div>
     </div>
 
     <div class="main-category-title">Morphospace</div>
     <div class="grid">
-        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Habitat.html')" class="card pca-card"><h3>By Habitat</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Migration.html')" class="card pca-card"><h3>By Migration</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html')" class="card pca-card"><h3>By Lifestyle</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/PCA_Morphospace_Trophic_Niche.html')" class="card pca-card"><h3>By Diet</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Habitat.html', 1000, 700)" class="card pca-card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Migration.html', 1000, 700)" class="card pca-card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html', 1000, 700)" class="card pca-card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/PCA_Morphospace_Trophic_Niche.html', 1000, 700)" class="card pca-card"><h3>By Diet</h3></div>
     </div>
 
     <div class="main-category-title">Individual Traits</div>
+
     <div class="sub-trait-title">Body Mass</div>
     <div class="grid">
-        <div onclick="openAutoModal('HTML_Figures/Mass_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/Mass_Migration.html')" class="card"><h3>By Migration</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/Mass_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/Mass_Trophic_Niche.html')" class="card"><h3>By Diet</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Migration.html', 1000, 500)" class="card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Mass_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
     </div>
 
     <div class="sub-trait-title">Leg Size</div>
     <div class="grid">
-        <div onclick="openAutoModal('HTML_Figures/Tarsus_Habitat.html')" class="card"><h3>By Habitat</h3></div>
-        <div onclick="openAutoModal('HTML_Figures/Tarsus_Primary_Lifestyle.html')" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Tarsus_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+    </div>
+
+    <div class="sub-trait-title">Beak Size</div>
+    <div class="grid">
+        <div onclick="openModal('HTML_Figures/Beak_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Beak_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+    </div>
+
+    <div class="sub-trait-title">Wing Size</div>
+    <div class="grid">
+        <div onclick="openModal('HTML_Figures/Wing_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/Wing_Migration.html', 1000, 500)" class="card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/Wing_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/Wing_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+    </div>
+
+    <div class="sub-trait-title">Wing Shape (Hand-Wing Index)</div>
+    <p class="trait-desc">The Hand-Wing Index (HWI) is a measure of wing pointedness.</p>
+    <div class="grid">
+        <div onclick="openModal('HTML_Figures/HWI_Habitat.html', 1000, 500)" class="card"><h3>By Habitat</h3></div>
+        <div onclick="openModal('HTML_Figures/HWI_Migration.html', 1000, 500)" class="card"><h3>By Migration</h3></div>
+        <div onclick="openModal('HTML_Figures/HWI_Primary_Lifestyle.html', 1000, 500)" class="card"><h3>By Lifestyle</h3></div>
+        <div onclick="openModal('HTML_Figures/HWI_Trophic_Niche.html', 1000, 500)" class="card"><h3>By Diet</h3></div>
+    </div>
+
+    <div class="hwi-illustration-container">
+        <img src="HWI_Definition.jpg" alt="HWI Illustration" class="hwi-img">
+        <div class="hwi-labels">
+            <span>Round Wings (Low HWI)</span>
+            <span>Pointed Wings (High HWI)</span>
+        </div>
     </div>
 
     <footer>
-        &copy; 2025 | Y. Emre Kısacık | Sabancı University | Molecular Biology, Genetics, and Bioengineering
+        &copy; 2025 | Yağız Emre Kısacık | Sabancı University | Molecular Biology & Genetics
     </footer>
 
     <script>
         const overlay = document.getElementById('modalOverlay');
+        const box = document.getElementById('modalBox');
         const frame = document.getElementById('plotFrame');
         const closeBtn = document.getElementById('closeBtn');
 
-        function openAutoModal(url) {
-            frame.style.width = '100px';
-            frame.style.height = '100px';
+        function openModal(url, w, h) {
+            box.style.width = w + 'px';
+            box.style.height = h + 'px';
             frame.src = url;
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -208,20 +297,14 @@
         frame.onload = function() {
             try {
                 const doc = frame.contentDocument || frame.contentWindow.document;
-                
-                doc.body.style.margin = '0';
-                doc.body.style.padding = '0';
-                doc.body.style.overflow = 'hidden';
-                const contentWidth = doc.body.scrollWidth;
-                const contentHeight = doc.body.scrollHeight;
-                frame.style.width = contentWidth + 'px';
-                frame.style.height = contentHeight + 'px';
-
-            } catch (e) {
-                console.error("Ölçüm başarısız. Klasör yapısının doğruluğundan emin olun.");
-                frame.style.width = '1000px';
-                frame.style.height = '700px';
-            }
+                const style = doc.createElement('style');
+                style.innerHTML = `
+                    body, html { margin: 0 !important; padding: 0 !important; overflow: hidden !important; width: 100%; height: 100%; }
+                    .plotly-graph-div { margin: 0 !important; }
+                `;
+                doc.head.appendChild(style);
+                frame.contentWindow.dispatchEvent(new Event('resize'));
+            } catch (e) {}
         };
 
         closeBtn.onclick = function() {
@@ -230,9 +313,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        overlay.onclick = function(e) {
-            if (e.target === overlay) closeBtn.onclick();
-        }
+        overlay.onclick = function(e) { if (e.target === overlay) closeBtn.onclick(); }
     </script>
 </body>
 </html>
