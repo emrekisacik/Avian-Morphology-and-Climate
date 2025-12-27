@@ -8,202 +8,259 @@
         :root {
             --primary: #2563eb;
             --dark: #0f172a;
-            --bg: #f8fafc;
-            --text: #334155;
+            --bg: #f4f7f6;
+            --text: #333;
+            --secondary-text: #7f8c8d;
+            --border-color: #cbd5e1;
         }
 
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header { max-width: 800px; margin: 0 auto 40px auto; }
+        
+        h1 { 
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text); 
+            font-weight: 800; 
+            font-size: 2.5rem; 
+            margin-bottom: 5px; 
+            letter-spacing: -0.5px;
+        }
+        
+        .guide-container {
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
             padding: 20px;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .guide-container h2 { 
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1.1rem; 
+            margin-top: 0; 
+            color: var(--primary); 
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { color: var(--dark); font-size: 2.2rem; margin-bottom: 10px; }
-
-        .tab-menu {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .tab-btn {
-            padding: 12px 24px;
-            border: none;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
+        .guide-item b { color: var(--text); display: block; margin-bottom: 4px; }
+        .guide-item p { margin: 0; font-size: 0.95rem; line-height: 1.4; color: var(--secondary-text); }
+
+        .legend-tip {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+
+        .main-category-title {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--text);
+            margin: 60px 0 35px 0;
+            letter-spacing: -0.5px;
         }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        .sub-trait-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-text);
+            margin: 40px 0 20px 0;
         }
 
-        .tab-content { display: none; width: 100%; max-width: 1200px; margin: 0 auto; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        .sub-trait-title::before,
+        .sub-trait-title::after {
+            content: "";
+            flex: 0 1 50px;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 0 15px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .trait-desc {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .card {
             background: white;
             padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 220px;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            background-color: #ebf5fb;
         }
 
-        .badge {
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background: #eff6ff;
-            color: var(--primary);
-            width: fit-content;
-            margin-bottom: 12px;
-            text-transform: uppercase;
+        .pca-card {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            width: 240px;
+        }
+        .pca-card:hover { background: #34495e; color: white; }
+
+        h3 { 
+            font-family: inherit;
+            margin: 0; 
+            font-size: 1.05rem; 
+            font-weight: 500; 
         }
 
-        .pca-card { background: var(--dark); color: white; border: none; }
-        .pca-card .badge { background: #38bdf8; color: var(--dark); }
-        .pca-card h3 { color: white; margin: 0; }
-        .pca-card p { color: #94a3b8; font-size: 0.9rem; }
+        .hwi-illustration-container {
+            max-width: 800px;
+            margin: 50px auto 20px auto;
+        }
 
-        h3 { margin: 0 0 8px 0; font-size: 1.1rem; color: var(--dark); }
-        p { margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.4; }
+        .hwi-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
 
-        footer { text-align: center; margin-top: 60px; padding: 20px; color: #94a3b8; font-size: 0.9rem; }
+        .hwi-labels {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px 0;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            font-weight: 600;
+        }
+
+        footer { margin-top: 100px; padding: 40px; border-top: 1px solid var(--border-color); color: #95a5a6; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Avian Morphology Explorer</h1>
-        <p>Comparative analysis of morphological traits across different ecological scales.</p>
+        <p>Interactive Plots of Avian Morphology and Ecological Factors</p>
     </header>
 
-    <div class="tab-menu">
-        <button class="tab-btn active" onclick="openTab(event, 'pca')">PCA (Morphospace)</button>
-        <button class="tab-btn" onclick="openTab(event, 'mass')">Body Mass</button>
-        <button class="tab-btn" onclick="openTab(event, 'tarsus')">Leg Size</button>
-        <button class="tab-btn" onclick="openTab(event, 'beak')">Beak Size</button>
-        <button class="tab-btn" onclick="openTab(event, 'wing')">Wing</button>
+    <div class="guide-container">
+        <h2>Morphospace Guide</h2>
+        <div class="guide-grid">
+            <div class="guide-item">
+                <b>PC1: Body Size</b>
+                <p>Represents overall body dimensions. As PC1 increases, body size increases.</p>
+            </div>
+            <div class="guide-item">
+                <b>PC2: Wing Shape</b>
+                <p>Represents wing shape. Higher PC2 values indicate more pointed wings.</p>
+            </div>
+        </div>
+        <div class="legend-tip">
+            💡 <b>Interactive Legend:</b> Click items in the plot legend to toggle specific clusters on/off for closer inspection.
+        </div>
     </div>
 
-    <div class="container">
-        
-        <div id="pca" class="tab-content active">
-            <div class="grid">
-                <a href="HTML_Figures/PCA_Morphospace_Habitat.html" class="card pca-card">
-                    <span class="badge">PCA</span>
-                    <h3>Morphospace by Habitat</h3>
-                    <p>Visualization of species clustering based on habitat types.</p>
-                </a>
-                <a href="HTML_Figures/PCA_Morphospace_Migration.html" class="card pca-card">
-                    <span class="badge">PCA</span>
-                    <h3>Morphospace by Migration</h3>
-                    <p>Morphological occupation across migratory strategies.</p>
-                </a>
-                <a href="HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html" class="card pca-card">
-                    <span class="badge">PCA</span>
-                    <h3>Morphospace by Lifestyle</h3>
-                    <p>Trait distribution across primary lifestyles.</p>
-                </a>
-                <a href="HTML_Figures/PCA_Morphospace_Trophic_Niche.html" class="card pca-card">
-                    <span class="badge">PCA</span>
-                    <h3>Morphospace by Diet</h3>
-                    <p>Clustering of species by trophic niche.</p>
-                </a>
-            </div>
-        </div>
+    <div class="main-category-title">Morphospace</div>
+    <div class="grid">
+        <a href="HTML_Figures/PCA_Morphospace_Habitat.html" class="card pca-card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/PCA_Morphospace_Migration.html" class="card pca-card"><h3>By Migration</h3></a>
+        <a href="HTML_Figures/PCA_Morphospace_Primary_Lifestyle.html" class="card pca-card"><h3>By Lifestyle</h3></a>
+        <a href="HTML_Figures/PCA_Morphospace_Trophic_Niche.html" class="card pca-card"><h3>By Diet</h3></a>
+    </div>
 
-        <div id="mass" class="tab-content">
-            <div class="grid">
-                <a href="HTML_Figures/Mass_Habitat.html" class="card"><span class="badge">Trait</span><h3>Mass by Habitat</h3><p>Log-transformed mass across habitats.</p></a>
-                <a href="HTML_Figures/Mass_Migration.html" class="card"><span class="badge">Trait</span><h3>Mass by Migration</h3><p>Mass variation by migration behavior.</p></a>
-                <a href="HTML_Figures/Mass_Primary_Lifestyle.html" class="card"><span class="badge">Trait</span><h3>Mass by Lifestyle</h3><p>Body mass across primary lifestyles.</p></a>
-                <a href="HTML_Figures/Mass_Trophic_Niche.html" class="card"><span class="badge">Trait</span><h3>Mass by Diet</h3><p>Mass distribution by trophic niche.</p></a>
-            </div>
-        </div>
+    <div class="main-category-title">Individual Traits</div>
 
-        <div id="tarsus" class="tab-content">
-            <div class="grid">
-                <a href="HTML_Figures/Tarsus_Habitat.html" class="card"><span class="badge">Trait</span><h3>Leg Size by Habitat</h3><p>Tarsus length across habitat groups.</p></a>
-                <a href="HTML_Figures/Tarsus_Primary_Lifestyle.html" class="card"><span class="badge">Trait</span><h3>Leg Size by Lifestyle</h3><p>Tarsus variation across lifestyles.</p></a>
-                <a href="HTML_Figures/Tarsus_Trophic_Niche.html" class="card"><span class="badge">Trait</span><h3>Leg Size by Diet</h3><p>Tarsus length across trophic niches.</p></a>
-            </div>
-        </div>
+    <div class="sub-trait-title">Body Mass</div>
+    <div class="grid">
+        <a href="HTML_Figures/Mass_Habitat.html" class="card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/Mass_Migration.html" class="card"><h3>By Migration</h3></a>
+        <a href="HTML_Figures/Mass_Primary_Lifestyle.html" class="card"><h3>By Lifestyle</h3></a>
+        <a href="HTML_Figures/Mass_Trophic_Niche.html" class="card"><h3>By Diet</h3></a>
+    </div>
 
-        <div id="beak" class="tab-content">
-            <div class="grid">
-                <a href="HTML_Figures/Beak_Habitat.html" class="card"><span class="badge">Trait</span><h3>Beak Size by Habitat</h3><p>Beak length across habitats.</p></a>
-                <a href="HTML_Figures/Beak_Trophic_Niche.html" class="card"><span class="badge">Trait</span><h3>Beak Size by Diet</h3><p>Beak variation across diet types.</p></a>
-            </div>
-        </div>
+    <div class="sub-trait-title">Leg Size</div>
+    <div class="grid">
+        <a href="HTML_Figures/Tarsus_Habitat.html" class="card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/Tarsus_Primary_Lifestyle.html" class="card"><h3>By Lifestyle</h3></a>
+        <a href="HTML_Figures/Tarsus_Trophic_Niche.html" class="card"><h3>By Diet</h3></a>
+    </div>
 
-        <div id="wing" class="tab-content">
-            <div class="grid">
-                <a href="HTML_Figures/Wing_Habitat.html" class="card"><span class="badge">Wing</span><h3>Wing Size by Habitat</h3><p>Wing chord variations.</p></a>
-                <a href="HTML_Figures/Wing_Migration.html" class="card"><span class="badge">Wing</span><h3>Wing Size by Migration</h3><p>Impact of migration on wing size.</p></a>
-                <a href="HTML_Figures/Wing_Primary_Lifestyle.html" class="card"><span class="badge">Wing</span><h3>Wing Size by Lifestyle</h3><p>Wing chord across lifestyles.</p></a>
-                <a href="HTML_Figures/Wing_Trophic_Niche.html" class="card"><span class="badge">Wing</span><h3>Wing Size by Diet</h3><p>Wing size across trophic niches.</p></a>
-                <a href="HTML_Figures/HWI_Habitat.html" class="card"><span class="badge">HWI</span><h3>HWI by Habitat</h3><p>Wing pointedness across habitats.</p></a>
-                <a href="HTML_Figures/HWI_Migration.html" class="card"><span class="badge">HWI</span><h3>HWI by Migration</h3><p>HWI across migratory behaviors.</p></a>
-                <a href="HTML_Figures/HWI_Primary_Lifestyle.html" class="card"><span class="badge">HWI</span><h3>HWI by Lifestyle</h3><p>HWI across primary lifestyles.</p></a>
-                <a href="HTML_Figures/HWI_Trophic_Niche.html" class="card"><span class="badge">HWI</span><h3>HWI by Diet</h3><p>Dispersal proxy across niches.</p></a>
-            </div>
-        </div>
+    <div class="sub-trait-title">Beak Size</div>
+    <div class="grid">
+        <a href="HTML_Figures/Beak_Habitat.html" class="card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/Beak_Trophic_Niche.html" class="card"><h3>By Diet</h3></a>
+    </div>
 
+    <div class="sub-trait-title">Wing Length</div>
+    <div class="grid">
+        <a href="HTML_Figures/Wing_Habitat.html" class="card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/Wing_Migration.html" class="card"><h3>By Migration</h3></a>
+        <a href="HTML_Figures/Wing_Primary_Lifestyle.html" class="card"><h3>By Lifestyle</h3></a>
+        <a href="HTML_Figures/Wing_Trophic_Niche.html" class="card"><h3>By Diet</h3></a>
+    </div>
+
+    <div class="sub-trait-title">Wing Shape (Hand-Wing Index)</div>
+    <p class="trait-desc">The Hand-Wing Index (HWI) is a measure of wing pointedness.</p>
+    <div class="grid">
+        <a href="HTML_Figures/HWI_Habitat.html" class="card"><h3>By Habitat</h3></a>
+        <a href="HTML_Figures/HWI_Migration.html" class="card"><h3>By Migration</h3></a>
+        <a href="HTML_Figures/HWI_Primary_Lifestyle.html" class="card"><h3>By Lifestyle</h3></a>
+        <a href="HTML_Figures/HWI_Trophic_Niche.html" class="card"><h3>By Diet</h3></a>
+    </div>
+
+    <div class="hwi-illustration-container">
+        <img src="HWI_Definition.jpg" alt="Hand-Wing Index Illustration: Round vs Pointed Wings" class="hwi-img">
+        <div class="hwi-labels">
+            <span>Round Wings (Low HWI)</span>
+            <span>Pointed Wings (High HWI)</span>
+        </div>
     </div>
 
     <footer>
-        &copy; 2025 Y. Emre Kısacık | Research Data Explorer
+        &copy; 2025 Yağız Emre Kısacık | Sabancı University | Molecular Biology & Genetics
     </footer>
-
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
 
 </body>
 </html>
