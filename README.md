@@ -13,7 +13,7 @@ Furthermore, since selection pressures are not limited to climate, the project a
 ## **2. Methodology**
 
 > [!NOTE]
-> For sections 2.1 and 2.2, refer to [this Python notebook](Data/DataPreparation.ipynb) for details.
+> For sections 2.1 and 2.2, refer to [this Python notebook](Data/Data_Preparation.ipynb) for details.
 
 ### **2.1. Data Structure**
 
