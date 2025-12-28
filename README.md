@@ -13,7 +13,7 @@ Furthermore, since selection pressures are not limited to climate, the project a
 ## **2. Methodology**
 
 > [!NOTE]
-> For sections 2.1 and 2.2, refer to [Data Preparation Notebook](Data/DataPreparation.ipynb) for details.
+> For sections 2.1 and 2.2, refer to [this Python notebook](Data/DataPreparation.ipynb) for details.
 
 ### **2.1. Data Structure**
 
@@ -69,14 +69,14 @@ For minimum, maximum, and mean temperature, the data are highly left-skewed. How
 #### **2.3.2. Climatic Variables**
 
 > [!NOTE]
-> For this section, refer to [Climate Notebook 1](1_EDA_Climatic.ipynb) and [Climate Notebook 2](2_EDA_Climatic.ipynb) for details.
+> For this section, refer to [this Python notebook](1_EDA_Climatic.ipynb) and [this Python notebook](2_EDA_Climatic.ipynb) for details.
 
 The selected morphological traits are tested against minimum, maximum, and mean temperature to assess correlations, using Spearman's rank correlation coefficient. Mass is additionally tested against precipitation, using the Pearson correlation coefficient, given the normal distributions.
 
 #### **2.3.3. Ecological Variables**
 
 > [!NOTE]
-> For this section, refer to [Ecology Notebook](3_EDA_Ecological.ipynb) for details.
+> For this section, refer to [this Python notebook](3_EDA_Ecological.ipynb) for details.
 
 All morphological traits are first grouped based on habitat types (Open, Closed, Aquatic), migratory behaviors (Sedentary, Partial, Migratory), and trophic levels (Herbivore, Omnivore, Carnivore). All the selected traits are first tested using the Kruskal–Wallis test to assess the differences in distributions, followed by Dunn’s test to determine the groups that differ.
 
@@ -85,7 +85,7 @@ All morphological traits are first grouped based on habitat types (Open, Closed,
 #### **2.4.1. Random Forest Regression**
 
 > [!NOTE]
-> For this section, refer to [Random Forest Notebook](4_Random_Forest.ipynb) for details.
+> For this section, refer to [this Python notebook](4_Random_Forest.ipynb) for details.
 
 A random forest regression model is built for each morphological trait, combining the climatic and ecological variables. To improve the predictive power, both variable sets are expanded. In addition to the previously used temperature and precipitation, temperature seasonality is included as a climatic variable. The trophic level is replaced by the trophic niche, with 10 distinct dietary specializations. Instead of grouping the habitats into broad categories, 11 specific habitat types are used to preserve the variance. The primary lifestyle is added as a new feature, with five categories of locomotory niches: Aerial (flying), Insessorial (perching), Terrestrial (walking), Aquatic (swimming), and Generalist (not specialized).
 
@@ -94,7 +94,7 @@ The ecological variables are converted into numerical variables via one-hot enco
 #### **2.4.2. Principal Component Analysis (PCA)**
 
 > [!NOTE]
-> For this section, refer to [PCA Notebook](5_PCA.ipynb) for details.
+> For this section, refer to [this Python notebook](5_PCA.ipynb) for details.
 
 PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait, including tail length that is not included in hypothesis testing, to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. As a result, it is noticed that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the HWI (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
 
@@ -176,7 +176,7 @@ Wing length is also negatively correlated with minimum and average temperatures,
 ### **3.2. Ecological Factors**
 
 > [!NOTE]
-> Interactive versions of all the plots of this section can be visualized [here](https://emrekisacik.github.io/Avian-Morphology-and-Climate/).
+> Interactive versions of all the plots of this section can be visualized on [this website](https://emrekisacik.github.io/Avian-Morphology-and-Climate/).
 
 #### **3.2.1. Hypothesis Testing**
 
@@ -359,7 +359,7 @@ Lastly, the model explains nearly half of the variation in the HWI (R² = 0.521)
 #### **3.2.3. Principal Component Analysis (PCA)**
 
 > [!NOTE]
-> Turning on/off the clusters from [here](https://emrekisacik.github.io/Avian-Morphology-and-Climate/) is highly encouraged to better explore the morphospace since some clusters overlap.
+> Turning on/off the clusters from [this website](https://emrekisacik.github.io/Avian-Morphology-and-Climate/) is highly encouraged to better explore the morphospace since some clusters overlap.
 
 First, the resulting morphospace is color-coded based on habitat (Figure 32). Consistent with hypothesis testing, the aquatic habitats (Coastal, Marine, Riverine, and Wetland) cluster toward higher PC1 values, translating to larger overall body sizes. On the other hand, the closed habitats (Forest, Woodland, and Shrubland) mostly overlap toward lower PC1 values, indicating smaller body sizes. As for the PC2, most habitat show a broad distribution.
 
