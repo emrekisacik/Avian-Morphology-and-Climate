@@ -6,7 +6,7 @@ Adaptation simply refers to the evolutionary process by which populations change
 
 Driven by a research interest in evolutionary biology and a personal fascination with birds, this project is designed to explore how avian morphology adapts to different environmental conditions. Combining a global avian trait dataset (AVONET) with world climate records (WorldClim), the project aims to reveal possible correlations between morphological traits and climatic conditions. 
 
-The project is expected to identify an inverse relationship between body size and temperature, as suggested by Bergmann’s rule. This is because larger body sizes help preserve internal body temperature due to a lower surface area to volume ratio. Similarly, shorter limbs help minimize heat loss. Therefore, an inverse relationship between limb size and temperature is expected. In addition, since precipitation determines the food and habitat resources available, it is expected to influence body and limb proportions. Temperature seasonality is also examined, since annual fluctuations in climate force organisms to adapt to both extremes or temporarily migrate to more favorable habitats. 
+The project is expected to identify an inverse relationship between body size and temperature, as suggested by Bergmann’s rule. This is because larger body sizes help preserve internal body temperature due to a lower surface area to volume ratio. Similarly, shorter limbs help minimize heat loss, known as Allen's rule. Therefore, an inverse relationship between limb size and temperature is expected. In addition, since precipitation determines the food and habitat resources available, it is expected to influence body and limb proportions. Temperature seasonality is also examined, since annual fluctuations in climate force organisms to adapt to both extremes or temporarily migrate to more favorable habitats. 
 
 Furthermore, since selection pressures are not limited to climate, the project also investigates physiological and behavioral variables. Factors such as habitat, migratory behavior, diet, and lifestyle are expected to have an effect on morphology. For example, habitat and lifestyle could act on limb proportions, migratory behavior could specifically affect wing size and shape, and diet could specifically influence beak size.
 
@@ -32,8 +32,9 @@ First, the AVONET dataset is filtered to eliminate the unused variables. The fol
     - Mass
     - Beak Length
     - Tarsus Length
+    - Tail Length
     - Wing Length
-    - Hand-Wing Index
+    - Hand-Wing Index (HWI)
 - Ecological Variables: 
     - Habitat
     - Trophic Level
@@ -59,13 +60,13 @@ Next, the rasterio library is used to extract the selected bioclimatic variables
 
 The distribution of each variable is evaluated for normality based on skewness and kurtosis, since the Shapiro-Wilk test is overly sensitive with large sample sizes. While skewness is used as a measure of the symmetry of the distribution, kurtosis is used to measure the sharpness of the peak. For this project, the criteria for normal distribution are defined as both skewness and kurtosis values falling between -1 and 1. 
 
-The morphological data are highly right-skewed for all five traits. For mass, wing length, and hand-wing index, log-transformation is applied to approach a normal distribution. However, for tarsus length and beak length, the assumption of normal distribution is rejected due to high kurtosis even after log-transformation. The morphological data are also evaluated for normality when grouped based on the ecological variables, for example, the distribution of mass within each habitat group. However, none of the traits are normally distributed across ecological groups.
+The morphological data are highly right-skewed for all five traits. For mass, wing length, and HWI, log-transformation is applied to approach a normal distribution. However, for tarsus length and beak length, the assumption of normal distribution is rejected due to high kurtosis even after log-transformation. The morphological data are also evaluated for normality when grouped based on the ecological variables, for example, the distribution of mass within each habitat group. However, none of the traits are normally distributed across ecological groups.
 
 For minimum, maximum, and mean temperature, the data are highly left-skewed. However, normalization is intentionally not applied to these variables. This is because temperature does not follow multiplicative scaling; for example, 20 °C is not twice as hot as 10 °C. Therefore, applying logarithmic or exponential transformations could distort the physical and biological relevance. Consequently, the assumption of normal distribution is rejected for these variables. For precipitation, square root transformation is applied to approach a normal distribution. 
 
 #### **2.3.2. Climatic Variables**
 
-All the morphological traits are tested against minimum, maximum, and mean temperature to assess correlations, using Spearman's rank correlation coefficient. Mass is additionally tested against precipitation, using the Pearson correlation coefficient, given the normal distributions.
+The selected morphological traits are tested against minimum, maximum, and mean temperature to assess correlations, using Spearman's rank correlation coefficient. Mass is additionally tested against precipitation, using the Pearson correlation coefficient, given the normal distributions.
 
 #### **2.3.3. Ecological Variables**
 
@@ -81,13 +82,37 @@ The ecological variables are converted into numerical variables via one-hot enco
 
 #### **2.4.2. Principal Component Analysis (PCA)**
 
-PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait, including tail length, to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. The result demonstrated that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the Hand-Wing Index (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
+PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait, including tail length that is not included in hypothesis testing, to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. As a result, it is noticed that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the HWI (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
+
+<img src="PNG_Figures/PCA_Scree_Plot.png" alt="Figure 1: Scree Plot of the full PCA" width="500">
+
+<img src="PNG_Figures/PCA_Scree_Plot.png" alt="Figure 2: Variable Loadings Heatmap for PC1 and PC2" width="500">
 
 ## **3. RESULTS**
 
 ### **3.1. Morphology and Climate**
 
+While the found correlations are statistically significant, they are much weaker than expected. Starting with body mass, the strongest relationship is the negative correlation between mass and minimum temperature (ρ = -0.035, p < 0.001) (Figure 3). However, this correlation weakens when compared with average temperature and loses its negative direction for maximum temperature. As for precipitation, the negative correlation is stronger (r = -0.064, p < 0.001) (Figure 4). Overall, the data reveals a weak association between colder, drier climates and slightly greater body mass, but it does not apply for maximum temperature.
 
+<img src="PNG_Figures/Mass_Temperature.png" alt="Figure 3: Correlation between Body Mass and Temperature Variables" width="500">
+
+<img src="PNG_Figures/Mass_Precipitation.png" alt="Figure 4: Correlation between Body Mass and Precipitation" width="500">
+
+Between tarsus length and temperature, the negative correlation is stronger and more consistent than that of body mass (Figure 5). The negative correlation with minimum temperature is almost four times stronger (ρ = -0.121, p < 0.001), and unlike mass, it remains negatively correlated even with maximum temperature (ρ = -0.042, p < 0.001). Thus, the data indicates that birds in colder climates tend to have longer legs. 
+
+<img src="PNG_Figures/Tarsus_Temperature.png" alt="Figure 5: Correlation between Tarsus Length and Temperature" width="500">
+
+Unlike body mass and tarsus length, beak length shows positive correlations with temperature (Figure 6). Similarly, with precipitation, beak length shows a positive correlation (ρ = 0.050, p < 0.001) (Figure 7). Therefore, these findings reveal a trend where birds in warmer and wetter climates exhibit slightly longer beaks.
+
+<img src="PNG_Figures/Beak_Temperature.png" alt="Figure 6: Correlation between Beak Length and Temperature" width="500">
+
+<img src="PNG_Figures/Beak_Precipitation.png" alt="Figure 7: Correlation between Beak Length and Precipitation" width="500">
+
+Wing length is also negatively correlated with minimum and average temperatures, consistent with body mass and tarsus length. However, similar to body mass, the correlation shifts toward a positive direction when compared to maximum temperature. Overall, excluding higher temperature extremes, the data suggests that birds in colder climates have slightly longer wings. As for the HWI, the trend is similar, where the correlation is positive only for maximum temperature (Figure 9).
+
+<img src="PNG_Figures/Wing_Temperature.png" alt="Figure 8: Correlation between Wing Length and Temperature" width="500">
+
+<img src="PNG_Figures/HWI_Temperature.png" alt="Figure 9: Correlation between the Hand-Wing Index and Temperature" width="500">
 
 ### **3.2. Morphology and Ecology**
 
@@ -95,5 +120,4 @@ PCA is performed to reduce the morphological traits into a few dimensions. The d
 
 ## **4. DISCUSSION** 
 
-
-
+DISCUSS THE BIOLOGICAL INTERPRETATIONS HERE!!!
