@@ -84,9 +84,19 @@ The ecological variables are converted into numerical variables via one-hot enco
 
 PCA is performed to reduce the morphological traits into a few dimensions. The data is first standardized for each trait, including tail length that is not included in hypothesis testing, to equally contribute to the analysis. Initially, a full PCA is run to determine the number of principal components to explain a sufficient amount of variance. As a result, it is noticed that the first two principal components, PC1 and PC2, account for nearly 85% of the total variance (Figure 1). PC1 represents the overall body size, accounting for all the size measures almost equally. PC2 represents the wing shape, heavily based on the HWI (Figure 2). Based on these two components, a two-dimensional morphospace is visualized for all the birds. The clusters are identified to conclude how climatic and ecological variables relate to the overall morphology. 
 
-<img src="PNG_Figures/PCA_Scree_Plot.png" alt="Figure 1: Scree Plot of the full PCA" width="500">
+<div align="center">
+    <img src="PNG_Figures/PCA_Scree_Plot.png" alt="Figure 1: Scree Plot of the full PCA" width="700">
+  <p>
+    <sub><b>Figure 1:</b> Scree Plot of the full PCA</sub>
+  </p>
+</div>
 
-<img src="PNG_Figures/PCA_Scree_Plot.png" alt="Figure 2: Variable Loadings Heatmap for PC1 and PC2" width="500">
+<div align="center">
+    <img src="PNG_Figures/PCA_Loadings_Heatmap.png" alt="Figure 2: Variable Loadings Heatmap for PC1 and PC2" width="700">
+  <p>
+    <sub><b>Figure 2:</b> Variable Loadings Heatmap for PC1 and PC2</sub>
+  </p>
+</div>
 
 ## **3. RESULTS**
 
@@ -94,25 +104,60 @@ PCA is performed to reduce the morphological traits into a few dimensions. The d
 
 While the found correlations are statistically significant, they are much weaker than expected. Starting with body mass, the strongest relationship is the negative correlation between mass and minimum temperature (ρ = -0.035, p < 0.001) (Figure 3). However, this correlation weakens when compared with average temperature and loses its negative direction for maximum temperature. As for precipitation, the negative correlation is stronger (r = -0.064, p < 0.001) (Figure 4). Overall, the data reveals a weak association between colder, drier climates and slightly greater body mass, but it does not apply for maximum temperature.
 
-<img src="PNG_Figures/Mass_Temperature.png" alt="Figure 3: Correlation between Body Mass and Temperature Variables" width="500">
+<div align="center">
+    <img src="PNG_Figures/Mass_Temperature.png" alt="Figure 3: Correlation between Body Mass and Temperature Variables" width="700">
+  <p>
+    <sub><b>Figure 3:</b> Correlation between Body Mass and Temperature Variables</sub>
+  </p>
+</div>
 
-<img src="PNG_Figures/Mass_Precipitation.png" alt="Figure 4: Correlation between Body Mass and Precipitation" width="500">
+<div align="center">
+    <img src="PNG_Figures/Mass_Precipitation.png" alt="Figure 4: Correlation between Body Mass and Precipitation" width="700">
+  <p>
+    <sub><b>Figure 4:</b> Correlation between Body Mass and Precipitation</sub>
+  </p>
+</div>
 
 Between tarsus length and temperature, the negative correlation is stronger and more consistent than that of body mass (Figure 5). The negative correlation with minimum temperature is almost four times stronger (ρ = -0.121, p < 0.001), and unlike mass, it remains negatively correlated even with maximum temperature (ρ = -0.042, p < 0.001). Thus, the data indicates that birds in colder climates tend to have longer legs. 
 
-<img src="PNG_Figures/Tarsus_Temperature.png" alt="Figure 5: Correlation between Tarsus Length and Temperature" width="500">
+<div align="center">
+    <img src="PNG_Figures/Tarsus_Temperature.png" alt="Figure 5: Correlation between Tarsus Length and Temperature" width="700">
+  <p>
+    <sub><b>Figure 5:</b> Correlation between Tarsus Length and Temperature</sub>
+  </p>
+</div>
 
 Unlike body mass and tarsus length, beak length shows positive correlations with temperature (Figure 6). Similarly, with precipitation, beak length shows a positive correlation (ρ = 0.050, p < 0.001) (Figure 7). Therefore, these findings reveal a trend where birds in warmer and wetter climates exhibit slightly longer beaks.
 
-<img src="PNG_Figures/Beak_Temperature.png" alt="Figure 6: Correlation between Beak Length and Temperature" width="500">
+<div align="center">
+    <img src="PNG_Figures/Beak_Temperature.png" alt="Figure 6: Correlation between Beak Length and Temperature" width="700">
+  <p>
+    <sub><b>Figure 6:</b> Correlation between Beak Length and Temperature</sub>
+  </p>
+</div>
 
-<img src="PNG_Figures/Beak_Precipitation.png" alt="Figure 7: Correlation between Beak Length and Precipitation" width="500">
+<div align="center">
+    <img src="PNG_Figures/Beak_Precipitation.png" alt="Figure 7: Correlation between Beak Length and Precipitation" width="700">
+  <p>
+    <sub><b>Figure 7:</b> Correlation between Beak Length and Precipitation</sub>
+  </p>
+</div>
 
 Wing length is also negatively correlated with minimum and average temperatures, consistent with body mass and tarsus length. However, similar to body mass, the correlation shifts toward a positive direction when compared to maximum temperature. Overall, excluding higher temperature extremes, the data suggests that birds in colder climates have slightly longer wings. As for the HWI, the trend is similar, where the correlation is positive only for maximum temperature (Figure 9).
 
-<img src="PNG_Figures/Wing_Temperature.png" alt="Figure 8: Correlation between Wing Length and Temperature" width="500">
+<div align="center">
+    <img src="PNG_Figures/Wing_Temperature.png" alt="Figure 8: Correlation between Wing Length and Temperature" width="700">
+  <p>
+    <sub><b>Figure 8:</b> Correlation between Wing Length and Temperature</sub>
+  </p>
+</div>
 
-<img src="PNG_Figures/HWI_Temperature.png" alt="Figure 9: Correlation between the Hand-Wing Index and Temperature" width="500">
+<div align="center">
+    <img src="PNG_Figures/HWI_Temperature.png" alt="Figure 9: Correlation between the HWI and Temperature" width="700">
+  <p>
+    <sub><b>Figure 9:</b> Correlation between the HWI and Temperature</sub>
+  </p>
+</div>
 
 ### **3.2. Morphology and Ecology**
 
